@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  elixir-video-player:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4567:4000"
+    volumes:
+      - ./elixir-video-player:/elixir-video-player
+  elixir-video-player-postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: video_player_dev
+    ports:
+      - "5432:5432"
