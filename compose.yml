@@ -9,7 +9,7 @@ services:
     ports:
       - "4567:4000"
     volumes:
-      - ./elixir-video-player:/elixir-video-player
+      - ./:/app
   elixir-video-player-postgres:
     image: postgres:17
     environment:
