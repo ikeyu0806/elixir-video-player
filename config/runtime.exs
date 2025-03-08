@@ -65,6 +65,12 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
+
+  if config_env() in [:dev, :test] do
+    Dotenv.load
+    Mix.Task.run("loadconfig")
+  end
+
   # ## SSL Support
   #
   # To get SSL working, you will need to add the `https` key
