@@ -1,0 +1,12 @@
+<div>
+    <h1>動画リスト</h1>
+    <ul>
+        <%= for video <- @videos do %>
+            <li>
+                <a href={video.video_url}>
+                    <%= video.title %>
+                </a>
+            </li>
+        <% end %>
+    </ul>
+</div>

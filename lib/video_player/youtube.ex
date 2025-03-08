@@ -21,6 +21,7 @@ defmodule VideoPlayer.Youtube do
       {:ok, %{"items" => items}} ->
         Enum.map(items, fn item ->
           %{
+            video_id: item["id"]["videoId"],
             title: item["snippet"]["title"],
             video_url: "https://www.youtube.com/watch?v=#{item["id"]["videoId"]}",
             thumbnail: item["snippet"]["thumbnails"]["high"]["url"]
