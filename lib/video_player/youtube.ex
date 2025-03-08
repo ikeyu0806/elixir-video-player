@@ -1,10 +1,11 @@
 # lib/hello_world/youtube.ex
 defmodule VideoPlayer.Youtube do
   @api_url "https://www.googleapis.com/youtube/v3/search"
-  @api_key System.get_env("GOOGLE_API_KEY")
 
   def get_channel_videos(channel_id) do
-    url = "#{@api_url}?key=#{@api_key}&channelId=#{channel_id}&part=snippet&type=video&maxResults=5"
+    api_key = System.get_env("GOOGLE_API_KEY")
+    IO.puts("api_key: #{api_key}")
+    url = "#{@api_url}?key=#{api_key}&channelId=#{channel_id}&part=snippet&type=video&maxResults=5"
 
     case HTTPoison.get(url) do
       {:ok, response} ->
