@@ -2,9 +2,9 @@ import Config
 
 # Configure your database
 config :video_player, VideoPlayer.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: "user",
+  password: "password",
+  hostname: "elixir-video-player-postgres",
   database: "video_player_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
