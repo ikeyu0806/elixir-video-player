@@ -18,6 +18,8 @@ defmodule VideoPlayerWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    get "/videos", VideoController, :index
   end
 
   # Other scopes may use custom stacks.
