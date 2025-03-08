@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+Dotenv.load()
+
 config :video_player,
   ecto_repos: [VideoPlayer.Repo],
   generators: [timestamp_type: :utc_datetime]
