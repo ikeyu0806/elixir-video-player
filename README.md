@@ -3,14 +3,17 @@ Elixir試したくて作ったプロジェクト
 
 ## プロジェクト作成コマンド
 ```
-docker-compose run --rm elixir-video-player mix phx.new . --app video_player
+docker compose run --rm elixir-video-player mix phx.new . --app video_player
 ```
 
 ## サーバ立ち上げ
 envファイルを用意して必要なAPIキーを設定してください
 ```
 cp config/.env.exs.example config/.env.exs
+docker compose up
 ```
+
+http://localhost:4567/
 
 ## Tips
 Repl実行
