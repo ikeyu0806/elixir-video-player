@@ -9,7 +9,7 @@ docker compose run --rm elixir-video-player mix phx.new . --app video_player
 ## サーバ立ち上げ
 envファイルを用意して必要なAPIキーを設定してください
 ```
-cp config/.env.exs.example config/.env.exs
+cp config/.env.example config/.env
 docker compose up
 ```
 
