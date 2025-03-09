@@ -9,7 +9,7 @@ docker compose run --rm elixir-video-player mix phx.new . --app video_player
 ## サーバ立ち上げ
 envファイルを用意して必要なAPIキーを設定してください
 ```
-cp config/.env.exs.example config/.env.exs
+cp config/.env.example config/.env
 docker compose up
 ```
 
@@ -27,6 +27,16 @@ iex -S mix
 System.get_env
 ```
 
+migration作成
+```
+mix phx.gen.context Youtube Channel channels channel_id:string
+mix ecto.migrate
+```
+
+routing確認
+```
+mix phx.routes
+```
 
 ## 以下phx.newで生成された文言
 
