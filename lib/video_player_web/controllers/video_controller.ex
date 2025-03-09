@@ -5,10 +5,10 @@ defmodule VideoPlayerWeb.VideoController do
     channel_id = "UCL6JY2DXJNDOIqCP1CRADng"  # チャンネルIDを設定
     case VideoPlayer.Youtube.get_channel_videos(channel_id) do
       {:ok, videos} ->
-        render(conn, "index.html", videos: videos)
+        render(conn, :index, videos: videos)
 
       {:error, message} ->
-        render(conn, "index.html", error: message)
+        render(conn, :index, error: message)
     end
 
     render(conn, :index, layout: false)
