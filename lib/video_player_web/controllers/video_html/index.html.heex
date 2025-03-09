@@ -1,13 +1,16 @@
 <div>
-    <h1>動画リスト</h1>
-    <ul>
+    <div class="grid grid-cols-4 gap-4">
         <%= for video <- @videos do %>
-            <li>
+            <div>
                 <a href={video.video_url}>
+                    <img 
+                        width="300"
+                        height="200"
+                        src={video.thumbnail_url}
+                        alt={video.title} />
                     <%= video.title %>
-                    <img src={video.thumbnail_url} alt={video.title} />
                 </a>
-            </li>
+            </div>
         <% end %>
-    </ul>
+    </div>
 </div>
