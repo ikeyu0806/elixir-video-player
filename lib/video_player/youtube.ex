@@ -1,5 +1,8 @@
 # lib/hello_world/youtube.ex
 defmodule VideoPlayer.Youtube do
+  alias VideoPlayer.Repo
+  alias VideoPlayer.Channel
+
   @api_url "https://www.googleapis.com/youtube/v3/search"
 
   def get_channel_videos(channel_id) do

@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "mix deps.get && source .env && mix ecto.migrate && mix phx.server"
+    command: bash -c "mix deps.get && source .env && mix clean && mix deps.compile && mix ecto.migrate && mix phx.server"
     ports:
       - "4567:4000"
     volumes:
