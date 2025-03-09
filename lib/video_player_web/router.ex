@@ -20,6 +20,12 @@ defmodule VideoPlayerWeb.Router do
     get "/", VideoController, :index
   end
 
+  scope "/channels", VideoPlayerWeb do
+    pipe_through :browser
+
+    get "/new", ChannelController, :new
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", VideoPlayerWeb do
   #   pipe_through :api
