@@ -25,7 +25,7 @@ defmodule VideoPlayer.Youtube do
             video_id: item["id"]["videoId"],
             title: item["snippet"]["title"],
             video_url: "https://www.youtube.com/watch?v=#{item["id"]["videoId"]}",
-            thumbnail: item["snippet"]["thumbnails"]["high"]["url"]
+            thumbnail_url: item["snippet"]["thumbnails"]["default"]["url"]
           }
         end)
 
