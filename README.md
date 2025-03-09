@@ -33,6 +33,10 @@ mix phx.gen.context Youtube Channel channels channel_id:string
 mix ecto.migrate
 ```
 
+routing確認
+```
+mix phx.routes
+```
 
 ## 以下phx.newで生成された文言
 
