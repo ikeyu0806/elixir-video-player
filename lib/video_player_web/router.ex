@@ -24,6 +24,7 @@ defmodule VideoPlayerWeb.Router do
     pipe_through :browser
 
     get "/new", ChannelController, :new
+    post "/", ChannelController, :create
   end
 
   # Other scopes may use custom stacks.
