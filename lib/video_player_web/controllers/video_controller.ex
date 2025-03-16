@@ -1,11 +1,12 @@
 defmodule VideoPlayerWeb.VideoController do
   use VideoPlayerWeb, :controller
+  alias VideoPlayer.Youtube.Channel
+  alias VideoPlayer.Youtube.Video
+  alias VideoPlayer.Repo
+  import Ecto.Query
 
   def index(conn, _params) do
-    channel_ids = [
-      "UCL6JY2DXJNDOIqCP1CRADng",
-      "UCaak9sggUeIBPOd8iK_BXcQ"
-    ]
+    channel_ids = Repo.all(from c in Channel, select: c.channel_id)
     videos = channel_ids
       |> Enum.map(&VideoPlayer.Youtube.get_channel_videos/1)
       |> Enum.reduce({:ok, []}, fn
