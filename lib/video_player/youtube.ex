@@ -10,13 +10,38 @@ defmodule VideoPlayer.Youtube do
     IO.puts("api_key: #{api_key}")
     url = "#{@api_url}?key=#{api_key}&channelId=#{channel_id}&part=snippet&type=video&maxResults=5"
 
-    case HTTPoison.get(url) do
-      {:ok, response} ->
-        IO.puts("response: #{inspect(response)}")
-        {:ok, parse_response(response.body)}
+    case HTTPoison.get(url, [], follow_redirect: true) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        case parse_response(body) do
+          {:ok, videos} when is_list(videos) ->
+            {:ok, videos}
+
+          {:error, msg} ->
+            {:error, msg}
+
+          _unexpected_response ->
+            {:error, "Unexpected response format"}
+        end
+
+      {:ok, %HTTPoison.Response{status_code: 400, body: body}} ->
+        {:error, extract_error_message(body)}
 
       {:error, _reason} ->
         {:error, "Failed to fetch data from YouTube API"}
+
+      {:ok, %HTTPoison.Response{status_code: code}} ->
+        {:error, "YouTube API returned status code #{code}"}
+
+      {:error, reason} ->
+        {:error, "Failed to fetch data from YouTube API: #{inspect(reason)}"}
+    end
+  end
+
+
+  defp extract_error_message(body) do
+    case Jason.decode(body) do
+      {:ok, %{"error" => %{"message" => message}}} -> message
+      _ -> "Unknown error from YouTube API"
     end
   end
 

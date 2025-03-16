@@ -7,19 +7,14 @@ defmodule VideoPlayerWeb.VideoController do
 
   def index(conn, _params) do
     channel_ids = Repo.all(from c in Channel, select: c.channel_id)
-    videos = channel_ids
-      |> Enum.map(&VideoPlayer.Youtube.get_channel_videos/1)
-      |> Enum.reduce({:ok, []}, fn
-        {:ok, vids}, {:ok, acc} -> {:ok, acc ++ vids}
-        {:error, msg}, _ -> {:error, msg}
-      end)
 
-    case videos do
-      {:ok, all_videos} ->
-        render(conn, :index, videos: all_videos)
+    {videos_result, errors} = Enum.reduce(channel_ids, {[], []}, fn channel_id, {acc_videos, acc_errors} ->
+      case VideoPlayer.Youtube.get_channel_videos(channel_id) do
+        {:ok, videos} -> {acc_videos ++ videos, acc_errors}
+        {:error, msg} -> {acc_videos, acc_errors ++ [msg]}
+      end
+    end)
 
-      {:error, message} ->
-        render(conn, :index, error: message)
-    end
+    render(conn, :index, videos: videos_result, errors: errors)
   end
 end
