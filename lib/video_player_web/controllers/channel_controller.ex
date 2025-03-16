@@ -2,6 +2,13 @@ defmodule VideoPlayerWeb.ChannelController do
   use VideoPlayerWeb, :controller
   alias VideoPlayer.Youtube
   alias VideoPlayerWeb.Router.Helpers, as: Routes
+  alias VideoPlayer.Repo
+  alias VideoPlayer.Youtube.Channel
+
+  def index(conn, _params) do
+    channels = Repo.all(Channel)
+    render(conn, :index, channels: channels)
+  end
 
   def new(conn, _params) do
     render(conn, :new, layout: false)

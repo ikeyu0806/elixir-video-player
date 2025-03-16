@@ -1,0 +1,23 @@
+<div>
+    <h1>チャンネル一覧</h1>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Channel ID</th>
+          <th>作成日時</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for channel <- @channels do %>
+          <tr>
+            <td><%= channel.channel_id %></td>
+            <td><%= channel.inserted_at %></td>
+            <td><%= channel.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  

@@ -23,6 +23,7 @@ defmodule VideoPlayerWeb.Router do
   scope "/channels", VideoPlayerWeb do
     pipe_through :browser
 
+    get "/", ChannelController, :index
     get "/new", ChannelController, :new
     post "/", ChannelController, :create
   end

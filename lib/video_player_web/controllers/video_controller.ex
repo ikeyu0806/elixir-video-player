@@ -21,7 +21,5 @@ defmodule VideoPlayerWeb.VideoController do
       {:error, message} ->
         render(conn, :index, error: message)
     end
-
-    render(conn, :index, layout: false)
   end
 end
